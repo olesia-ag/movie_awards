@@ -1,0 +1,15 @@
+.Container {
+	display: flex;
+	flex-direction: column;
+}
+
+/* tablet layout */
+@media (min-width: 50em) {
+}
+/* desktop layout */
+@media (min-width: 75em) {
+	.Container {
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
+}

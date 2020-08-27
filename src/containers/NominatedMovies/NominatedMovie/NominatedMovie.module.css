@@ -1,0 +1,8 @@
+.Movie{
+  border: 2px solid pink
+}
+
+.Movie,
+.ToDelete{
+  border: 3px solid black
+}
