@@ -1,0 +1,37 @@
+.Star {
+	width: 10px;
+	height: 10px;
+	border: none;
+	/* stroke: black; */
+	border: none;
+	background-color: transparent;
+	outline: none;
+}
+
+.Star.Add svg path{
+	fill: transparent;
+}
+ .Star svg path:hover {
+	cursor: pointer;
+}
+.Star.Add svg path:active{
+	fill: transparent;
+}
+
+.Star.Added svg path{
+	fill: yellow;
+}
+
+/* .Star.Added svg path:hover{
+	fill: transparent;
+	cursor: pointer;
+} */
+
+.Danger {
+	color: var(--lightYellow);
+}
+
+.Star:disabled {
+	color: var(--lightPink);
+	cursor: not-allowed;
+}

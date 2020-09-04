@@ -1,0 +1,4 @@
+.NominatedMovies {
+  display: flex;
+  flex-direction: column;
+}

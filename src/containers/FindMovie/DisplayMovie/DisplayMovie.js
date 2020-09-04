@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NominatedMoviesContext } from '../../../context/nominated-movies-context';
 import Button from '../../../components/UI/Button/Button';
+import Star from '../../../components/UI/Button/Star/Star'
 
 const DisplayMovie = props => {
 	const { title, released, id, nominated } = props;
@@ -20,9 +21,7 @@ const DisplayMovie = props => {
 		<div>
 			<p>{title}</p>
 			<p>{released}</p>
-			<Button clicked={event => nominateMovie(event)} btnType='Success'>
-				Nominate
-			</Button>
+			<Star clicked={event => nominateMovie(event)} btnType='Add' />
 		</div>
 	);
 };

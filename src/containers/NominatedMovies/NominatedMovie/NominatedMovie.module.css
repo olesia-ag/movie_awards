@@ -1,5 +1,9 @@
-.Movie{
-  border: 2px solid pink
+.NominatedMovie{
+  border: 2px solid pink;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
 }
 
 .Movie,

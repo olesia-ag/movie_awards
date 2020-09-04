@@ -18,10 +18,8 @@ const NominatedMoviesProvider = (props) => {
 		} else {
 			let updatedMovies = [...movies];
 			updatedMovies.push(movie);
-			console.log('went to else in context, updMovies', updatedMovies);
 			setMovies(updatedMovies);
 			localStorage.setItem('Movies', JSON.stringify(updatedMovies));
-			console.log('movies in context:', movies);
 		}
 	};
 
@@ -31,12 +29,9 @@ const NominatedMoviesProvider = (props) => {
 			setMovies(moviesArr)
 		}
 	};
-	const removeMovieHandler = (id) => {
-		const updatedMovies = movies.map((movie) => {
-			if (movie.id !== id) {
-				return movie;
-			}
-		});
+	const removeMoviesHandler = (arrToRemove) => {
+		const updatedMovies = movies.filter(el => !arrToRemove.includes(el.id));
+		localStorage.setItem('Movies', JSON.stringify(updatedMovies));
 		setMovies(updatedMovies);
 	};
 	//will check if the movie with id already exists in the array
@@ -47,7 +42,7 @@ const NominatedMoviesProvider = (props) => {
 		<NominatedMoviesContext.Provider
 			value={{
 				addMovie: addMovieHandler,
-				removeMovie: removeMovieHandler,
+				removeMovies: removeMoviesHandler,
 				findMovie: findMovieHandler,
 				getMoviesFromStorage: getMoviesFromStorage,
 				movies: movies,

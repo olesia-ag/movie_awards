@@ -1,24 +1,38 @@
-import React, {useEffect} from 'react'
-import NominatedMoviesProvider from '../../../context/nominated-movies-context'
+import React, { useEffect, useState } from 'react';
+import NominatedMoviesProvider from '../../../context/nominated-movies-context';
+import Star from '../../../components/UI/Button/Star/Star';
+import classes from './NominatedMovie.module.css';
 
-const NominatedMovie = (props) => {
-  const movieClasses = []
-  if (props.toDelete){
-    movieClasses.push('ToDelete')
-  }
-  console.log('nominated movie props:', props)
+const NominatedMovie = ({ movieId, title, released, markForDeletion, unmarkForDeletion }) => {
+	const [toDelete, setToDelete] = useState(false);
 
-  return (
-    <div>
-      {console.log('rendering single movie')}
-      <ul>
-        <li>title: {props.title}</li>
-        <li>released: {props.released}</li>
-      </ul>
+	const chooseToDelete = (event) => {
+    setToDelete(true);
+    console.log(event.target)
+		markForDeletion(event, movieId);
+	};
 
+	const unchooseToDelete = (event) => {
+    // console.log('went to unchoose')
+    setToDelete(false);
+    unmarkForDeletion(event, movieId)
+	};
+	return (
+		<div className={classes.NominatedMovie}>
+			<ul>
+				<li>title: {title}</li>
+				<li>released: {released}</li>
+			</ul>
+			<Star
+				btnType={!toDelete ? 'Added' : 'Add'}
+				clicked={
+					toDelete
+						? unchooseToDelete
+						: chooseToDelete
+				}
+			/>
+		</div>
+	);
+};
 
-    </div>
-  )
-}
-
-export default NominatedMovie
+export default NominatedMovie;
