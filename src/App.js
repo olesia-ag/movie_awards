@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FindMovie from './containers/FindMovie/FindMovie';
 import NominatedMovies from './containers/NominatedMovies/NominatedMovies';
@@ -25,7 +24,7 @@ function App() {
 				<Route path='/nominatedmovies' exact component={NominatedMovies} />
 				<Redirect to='/findmovie' />
 			</Switch>
-			{/* <FindMovie /> */}
+
 		</div>
 	);
 }

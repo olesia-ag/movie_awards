@@ -3,14 +3,6 @@
 .SideDrawer {
     position: fixed;
     left: auto;
-    /* width: 100vw;
-    height: 40vh;
-    left: 0;
-    top: 0;
-    z-index: 200;
-    background-color: var(--base);
-    padding: 32px 16px;
-    box-sizing: border-box;*/
     transition: transform 3s ease-out;
 }
 
