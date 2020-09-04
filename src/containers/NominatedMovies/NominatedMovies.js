@@ -31,7 +31,6 @@ const NominatedMovies = (props) => {
 
 	const submitDeletion = (event) => {
 		event.preventDefault()
-		console.log('went ot submit deletion')
 		moviesContext.removeMovies(moviesToRemove)
 		setMoviesToRemove([])
 	}

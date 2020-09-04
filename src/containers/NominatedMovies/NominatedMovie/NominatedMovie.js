@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import NominatedMoviesProvider from '../../../context/nominated-movies-context';
 import Star from '../../../components/UI/Button/Star/Star';
 import classes from './NominatedMovie.module.css';
 
@@ -13,10 +12,10 @@ const NominatedMovie = ({ movieId, title, released, markForDeletion, unmarkForDe
 	};
 
 	const unchooseToDelete = (event) => {
-    // console.log('went to unchoose')
     setToDelete(false);
     unmarkForDeletion(event, movieId)
 	};
+
 	return (
 		<div className={classes.NominatedMovie}>
 			<ul>

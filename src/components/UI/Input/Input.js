@@ -12,22 +12,28 @@ const input = (props) => {
 	switch (props.elementType) {
 		case 'input':
 			inputElement = (
+				<>
 				<input
 					className={inputClasses.join(' ')}
 					{...props.elementConfig}
 					value={props.value}
 					onChange={props.changed}
 				/>
+				<span className={classes.focusBorder}><i></i></span>
+				</>
 			)
 			break
 		default:
 			inputElement = (
+				<>
 				<input
-					// className={inputClasses.join(' ')}
+					className={inputClasses.join(' ')}
 					// {...props.elementConfig}
 					// value={props.value}
 					onChange={props.changed}
 				/>
+			<span className={classes.focusBorder}><i></i></span>
+			</>
 			)
 	}
 
@@ -38,7 +44,7 @@ const input = (props) => {
 	// }
 
 	return (
-		<div className={classes.Input}>
+		<div>
 			{/* <label className={classes.Label}>{validationMessage}</label> */}
 			{inputElement}
 

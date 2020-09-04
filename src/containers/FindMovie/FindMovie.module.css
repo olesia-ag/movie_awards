@@ -13,3 +13,10 @@
 		justify-content: space-evenly;
 	}
 }
+
+.InputContainer {
+	float: left;
+	width: 80%;
+	margin: 40px 3%;
+	position: relative;
+}
