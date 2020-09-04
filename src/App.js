@@ -18,13 +18,16 @@ function App() {
 
 	return (
 		<div className='App'>
-			<SideDrawer closed={sideDrawerClosedHandler} drawerToggleClicked={sideDrawerToggleHandler} />
+			<SideDrawer
+				closed={sideDrawerClosedHandler}
+				drawerToggleClicked={sideDrawerToggleHandler}
+			/>
 			<Switch>
 				<Route path='/findmovie' exact component={FindMovie} />
 				<Route path='/nominatedmovies' exact component={NominatedMovies} />
 				<Redirect to='/findmovie' />
 			</Switch>
-
+			<NominatedMovies />
 		</div>
 	);
 }

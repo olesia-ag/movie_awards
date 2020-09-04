@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NominatedMoviesContext } from '../../context/nominated-movies-context';
 import NominatedMovie from './NominatedMovie/NominatedMovie';
 
@@ -11,9 +11,12 @@ const NominatedMovies = props => {
     event.preventDefault()
 
   }
+	useEffect(()=>{
+	moviesContext.getMoviesFromStorage()
+	}, [])
 
 	let displayMovies;
-	console.log(moviesContext.movies)
+	console.log(moviesContext)
 	if (moviesContext.movies.length === 0) {
 		displayMovies = <p>Nominate Some Movies First!</p>;
 	} else {

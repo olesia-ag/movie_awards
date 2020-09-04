@@ -1,7 +1,7 @@
 
 
 .SideDrawer {
-    position: fixed;
+    /* position: fixed; */
     left: auto;
     transition: transform 3s ease-out;
 }
