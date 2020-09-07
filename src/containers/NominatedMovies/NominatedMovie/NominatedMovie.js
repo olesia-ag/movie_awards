@@ -12,11 +12,11 @@ const NominatedMovie = ({
 	const [toDelete, setToDelete] = useState(false);
 	let nominatedMovieClasses=[classes.NominatedMovie]
 	if(toDelete){
-		nominatedMovieClasses.push('ToDelete')
+		nominatedMovieClasses.push(classes.ToDelete)
 	}
+
 	const chooseToDelete = (event) => {
 		setToDelete(true);
-		console.log(event.target);
 		markForDeletion(event, movieId);
 	};
 

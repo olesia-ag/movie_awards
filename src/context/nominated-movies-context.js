@@ -14,7 +14,6 @@ export const NominatedMoviesContext = React.createContext({
 const NominatedMoviesProvider = (props) => {
 	const [movies, setMovies] = useState([]);
 	const [reachedMax, setReachedMax] = useState(null);
-	console.log('movies in context', movies);
 	useEffect(() => {
 		if (movies.length === 5) {
 			setReachedMax(true);
@@ -23,10 +22,10 @@ const NominatedMoviesProvider = (props) => {
 		}
 	}, [movies.length]);
 	useEffect(() => getMoviesFromStorage(), []);
+
 	const addMovieHandler = (movie) => {
-		console.log('went to addMovieHandler in context', movie);
 		if (movies.length > 4) {
-			return 'Sorry. Maximum of five movies allowed. Delete something first';
+			return 'Error. Should not get here';
 		} else {
 			let updatedMovies = [...movies];
 			updatedMovies.push(movie);

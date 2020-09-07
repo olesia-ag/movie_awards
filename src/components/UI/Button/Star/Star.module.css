@@ -7,18 +7,18 @@
 	outline: none;
 	float: right;
 }
-
-.Star.Add svg path{
+.Star.Add svg path {
 	fill: transparent;
 }
- .Star svg path:hover {
+.Star svg path:hover {
 	cursor: pointer;
+
 }
-.Star.Add svg path:active{
+.Star.Add svg path:active {
 	fill: transparent;
 }
 
-.Star.Added svg path{
+.Star.Added svg path {
 	fill: var(--brightPink);
 	stroke: var(--mainPurple);
 }

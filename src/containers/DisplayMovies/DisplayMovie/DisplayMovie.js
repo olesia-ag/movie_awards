@@ -4,14 +4,17 @@ import Button from '../../../components/UI/Button/Button';
 import classes from './DisplayMovie.module.css';
 
 const DisplayMovie = (props) => {
-	const { title, released, id, reachedNominatedMax} = props;
+	const { title, released, id } = props;
 	const moviesContext = useContext(NominatedMoviesContext);
 	const [nominated, setNominated] = useState(false);
 	useEffect(() => {
 		if (moviesContext.findMovieHandler(id)) {
 			setNominated(true);
 		}
-	}, [id]);
+		else{
+			setNominated(false)
+		}
+	}, [...Object.values(moviesContext), id]);
 
 	const nominateMovie = (event) => {
 		event.preventDefault();
