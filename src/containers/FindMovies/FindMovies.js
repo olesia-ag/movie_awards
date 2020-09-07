@@ -3,7 +3,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axiosInstance from '../../axios-movies';
 import DisplayMovies from '../DisplayMovies/DisplayMovies';
-import classes from './FindMovie.module.css';
+import classes from './FindMovies.module.css';
 import { NominatedMoviesContext } from '../../context/nominated-movies-context';
 
 const FindMovie = (props) => {
@@ -27,18 +27,11 @@ const FindMovie = (props) => {
 
 	const inputChangedHandler = (event) => {
 		event.preventDefault();
+		setError(null)
 		const updatedMovie = { ...movieToFind };
 		updatedMovie.title = event.target.value;
 		setMovieToFind(updatedMovie);
 	};
-
-	// useEffect(() => {
-	// 	if (findMovieHandler(foundMovies.id)) {
-	// 		const updatedMovie = { ...foundMovies };
-	// 		updatedMovie.nominated = true;
-	// 		setFoundMovies(updatedMovie);
-	// 	}
-	// }, [foundMovies.id]);
 
 	const fetchMovie = () => {
 		setLoading(true);
@@ -59,7 +52,7 @@ const FindMovie = (props) => {
 	};
 	let showWarning = null;
 	if (reachedMax) {
-		showWarning = <h5>You've reached the maximum of 5 nominated movies!</h5>;
+		showWarning =<span className={classes.ReachedMaxWarning}><h5>You've reached the maximum of 5 nominated movies!</h5></span> ;
 	}
 	return (
 		<div className={classes.FindMovies}>
@@ -67,7 +60,7 @@ const FindMovie = (props) => {
 				<Input
 					changed={(event) => inputChangedHandler(event)}
 					label='title'
-					placeholder='movie title, e.g. Interstellar'
+					placeholder='movie title, e.g. Harry Potter'
 				/>
 				<Button
 					btnType='Success'
@@ -75,8 +68,8 @@ const FindMovie = (props) => {
 					disabled={movieToFind.title.length === 0}>
 					SUBMIT
 				</Button>
-				{showWarning}
 			</form>
+			{showWarning}
 			<DisplayMovies
 				movies={foundMovies}
 				loading={loading}

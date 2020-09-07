@@ -32,11 +32,11 @@ const NominatedMovies = (props) => {
 
 	let displayMovies;
 	if (moviesContext.movies.length === 0) {
-		displayMovies = <h5>Nominated movies will appear here</h5>;
+		displayMovies = <p>Nominated movies will appear here</p>;
 	} else {
 		displayMovies = (
 			<>
-				<h5>Nominated movies:</h5>
+
 				<ol>
 					{moviesContext.movies.map((movie) => {
 						return (
@@ -59,15 +59,15 @@ const NominatedMovies = (props) => {
 		);
 	}
 
-	let moviesForDeletion = null;
+	let moviesForDeletion = <h5>Nominated movies:</h5>
 	if (moviesToRemove.length) {
 		moviesForDeletion = (
 			<div className={classes.DeletionWarning}>
-				<p>
+				<h5>
 					You are about to delete{' '}
 					{moviesToRemove.length === 5 ? 'all' : moviesToRemove.length} movie
 					{moviesToRemove.length > 1 ? 's' : null} from your nominated list!
-				</p>
+				</h5>
 				<Button
 					clicked={(event) => submitDeletion(event)}
 					disabled={moviesToRemove.length ? false : true}
@@ -79,8 +79,8 @@ const NominatedMovies = (props) => {
 	}
 	return (
 		<div className={classes.NominatedMoviesContainer}>
-			<div className={classes.NominatedMovies}>{displayMovies}</div>
 			<div>{moviesForDeletion}</div>
+			<div className={classes.NominatedMovies}>{displayMovies}</div>
 		</div>
 	);
 };

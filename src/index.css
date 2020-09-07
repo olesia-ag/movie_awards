@@ -4,15 +4,15 @@
 :root {
 	--mainPurple: #792359;
 	--brightPink: #d72483;
-	--fontDark: #2f2d2e;
 	--lightPink: #efa0ca;
-	--blackColor: #000;
 	--greyColor: #ccc;
 	--lightGrey: #d3d3d3;
 	background-color: white;
 	font-family: 'Open Sans', sans-serif;
+	font-size: 62.5%;
 }
 
-*{
+* {
 	box-sizing: border-box;
+	font-size: medium;
 }
