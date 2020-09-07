@@ -1,12 +1,18 @@
-.NominatedMovie{
-  border: 2px solid pink;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-around;
-}
 
 .Movie,
 .ToDelete{
   border: 3px solid black
+}
+
+.StarContainer {
+  margin: 0 2em 0 3em;
+}
+
+.NominatedMovie.ToDelete{
+  color: yellow !important;
+
+}
+.NominatedMovie{
+  margin: 0.8em;
+
 }

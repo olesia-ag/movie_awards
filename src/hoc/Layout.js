@@ -1,17 +1,15 @@
 import React from 'react';
 import NominatedMovies from '../containers/NominatedMovies/NominatedMovies';
-import FindMovie from '../containers/FindMovie/FindMovie';
-import { NominatedMoviesContext } from '../context/nominated-movies-context';
-
+import FindMovies from '../containers/FindMovies/FindMovies';
+import DisplayMovies from '../containers/DisplayMovies/DisplayMovies';
+import classes from './Layout.module.css';
 
 const Layout = (props) => {
-
-
 	return (
-		<>
-      <FindMovie />
-      <NominatedMovies />
-		</>
+		<div className={classes.MainContainer}>
+				<NominatedMovies />
+				<FindMovies />
+		</div>
 	);
 };
 

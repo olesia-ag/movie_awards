@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const NominatedMoviesContext = React.createContext({
 	movies: [],
+	reachedMax: false,
 	addMovie: () => {},
 	removeMovie: () => {},
 	findMovie: () => {},
 	getMoviesFromStorage: () => {},
+	reachedMax: () => {},
+	findMovieHandler: () => {},
 });
 
 const NominatedMoviesProvider = (props) => {
 	const [movies, setMovies] = useState([]);
-
+	const [reachedMax, setReachedMax] = useState(null);
+	console.log('movies in context', movies);
+	useEffect(() => {
+		if (movies.length === 5) {
+			setReachedMax(true);
+		} else {
+			setReachedMax(false);
+		}
+	}, [movies.length]);
+	useEffect(() => getMoviesFromStorage(), []);
 	const addMovieHandler = (movie) => {
 		console.log('went to addMovieHandler in context', movie);
 		if (movies.length > 4) {
@@ -25,12 +37,12 @@ const NominatedMoviesProvider = (props) => {
 
 	const getMoviesFromStorage = () => {
 		const moviesArr = JSON.parse(localStorage.getItem('Movies'));
-		if(moviesArr.length!==0){
-			setMovies(moviesArr)
+		if (moviesArr.length !== 0) {
+			setMovies(moviesArr);
 		}
 	};
 	const removeMoviesHandler = (arrToRemove) => {
-		const updatedMovies = movies.filter(el => !arrToRemove.includes(el.id));
+		const updatedMovies = movies.filter((el) => !arrToRemove.includes(el.id));
 		localStorage.setItem('Movies', JSON.stringify(updatedMovies));
 		setMovies(updatedMovies);
 	};
@@ -46,6 +58,7 @@ const NominatedMoviesProvider = (props) => {
 				findMovie: findMovieHandler,
 				getMoviesFromStorage: getMoviesFromStorage,
 				findMovieHandler: findMovieHandler,
+				reachedMax: reachedMax,
 				movies: movies,
 			}}>
 			{props.children}

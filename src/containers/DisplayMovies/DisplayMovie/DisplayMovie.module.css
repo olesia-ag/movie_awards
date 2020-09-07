@@ -1,0 +1,7 @@
+.SingleMovie{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.2em;
+  padding: 0.5em;
+}

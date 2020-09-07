@@ -6,9 +6,9 @@ const star = (props) => (
 	<button onClick={props.clicked} disabled={props.disabled} className={[classes.Star, classes[props.btnType]].join(' ')}>
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width='4em'
-			height='4em'
-			viewBox='0 0 100 100'
+			width='2em'
+			height='2em'
+			viewBox='0 0 70 70'
 			>
 			<title>Five Pointed Star</title>
 			<path

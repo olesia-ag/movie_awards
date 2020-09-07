@@ -1,16 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { NominatedMoviesContext } from '../../context/nominated-movies-context';
 import NominatedMovie from './NominatedMovie/NominatedMovie';
-import Button from '../../components/UI/Button/Button'
+import Button from '../../components/UI/Button/Button';
+import classes from './NominatedMovies.module.css';
 
 const NominatedMovies = (props) => {
 	//moviestoremove will only contain id of the movies that should be removed
 	const [moviesToRemove, setMoviesToRemove] = useState([]);
 	const moviesContext = useContext(NominatedMoviesContext);
-
-	useEffect(() => {
-		moviesContext.getMoviesFromStorage();
-	}, []);
 
 	const markForDeletion = (event, id) => {
 		event.preventDefault();
@@ -20,53 +17,72 @@ const NominatedMovies = (props) => {
 	};
 
 	const unmarkForDeletion = (event, id) => {
-		event.preventDefault()
+		event.preventDefault();
 		const updatedMoviesToRemove = moviesToRemove.filter((movieId) => {
 			if (movieId !== id) {
 				return movieId;
-		}})
-		setMoviesToRemove(updatedMoviesToRemove)
-	}
-
+			}
+		});
+		setMoviesToRemove(updatedMoviesToRemove);
+	};
 
 	const submitDeletion = (event) => {
-		event.preventDefault()
-		moviesContext.removeMovies(moviesToRemove)
-		setMoviesToRemove([])
-	}
+		event.preventDefault();
+		moviesContext.removeMovies(moviesToRemove);
+		setMoviesToRemove([]);
+	};
 
 	let displayMovies;
 	if (moviesContext.movies.length === 0) {
-		displayMovies = <p>Nominate Some Movies First!</p>;
+		displayMovies = <h5>Nominated movies will appear here</h5>;
 	} else {
-		displayMovies = moviesContext.movies.map((movie) => {
-			return (
-				<NominatedMovie
-					key={movie.id}
-					movieId={movie.id}
-					title={movie.title}
-					released={movie.released}
-					delete={moviesContext.removeMovie}
-					markForDeletion={(event, id) => markForDeletion(event, id)}
-					unmarkForDeletion={(event, id) => unmarkForDeletion(event, id)}
-				/>
-			)
-		}
-		)
-	}
-
-	let moviesForDeletion = null
-	if(moviesToRemove.length){
-		moviesForDeletion = (
+		displayMovies = (
 			<>
-			<p>You are about to delete {moviesToRemove.length===5?'all':moviesToRemove.length} movie{moviesToRemove.length>1?'s':null} from your favorites!</p>
-			<Button clicked={(event)=>submitDeletion(event)} disabled={moviesToRemove.length?false:true} btnType='Danger' > SUBMIT </Button>
+			<h5>Nominated movies:</h5>
+			<ol>
+				{moviesContext.movies.map((movie) => {
+					return (
+						<li key={movie.id}>
+							<NominatedMovie
+								movieId={movie.id}
+								title={movie.title}
+								released={movie.released}
+								delete={moviesContext.removeMovie}
+								markForDeletion={(event, id) => markForDeletion(event, id)}
+								unmarkForDeletion={(event, id) => unmarkForDeletion(event, id)}
+							/>
+						</li>
+					);
+				})}
+			</ol>
 			</>
-		)
-
-
+		);
 	}
-return <div>{displayMovies}{moviesForDeletion}</div>;
+
+	let moviesForDeletion = null;
+	if (moviesToRemove.length) {
+		moviesForDeletion = (
+			<div className={classes.DeletionWarning}>
+				<p>
+					You are about to delete{' '}
+					{moviesToRemove.length === 5 ? 'all' : moviesToRemove.length} movie
+					{moviesToRemove.length > 1 ? 's' : null} from your nominated list!
+				</p>
+				<Button
+					clicked={(event) => submitDeletion(event)}
+					disabled={moviesToRemove.length ? false : true}
+					btnType='Danger'>
+				CONFIRM
+				</Button>
+			</div>
+		);
+	}
+	return (
+		<div className={classes.NominatedMoviesContainer}>
+			<div className={classes.NominatedMovies}>{displayMovies}</div>
+			<div>{moviesForDeletion}</div>
+		</div>
+	);
 };
 
 export default NominatedMovies;

@@ -1,4 +1,9 @@
 
+.InputContainer {
+	width: 70vw;
+	margin: 2em auto;
+	position: relative;
+}
 
 .InputElement {
   border: 1px solid #ccc;

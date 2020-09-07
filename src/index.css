@@ -5,11 +5,13 @@
 	--mainPurple: #792359;
 	--brightPink: #d72483;
 	--fontDark: #2f2d2e;
-	--brightYellow: #ffff3f;
-	--lightBlue: #62b6cb;
-	--lightYellow: #ffef9f;
+	--lightPink: #efa0ca;
 	--blackColor: #000;
 	--greyColor: #ccc;
 	background-color: white;
 	font-family: 'Open Sans', sans-serif;
+}
+
+*{
+	box-sizing: border-box;
 }

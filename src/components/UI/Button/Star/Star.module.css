@@ -5,6 +5,7 @@
 	border: none;
 	background-color: transparent;
 	outline: none;
+	float: right;
 }
 
 .Star.Add svg path{
@@ -18,16 +19,8 @@
 }
 
 .Star.Added svg path{
-	fill: var(--brightYellow);
-}
-
-/* .Star.Added svg path:hover{
-	fill: transparent;
-	cursor: pointer;
-} */
-
-.Danger {
-	color: var(--lightYellow);
+	fill: var(--brightPink);
+	stroke: var(--mainPurple);
 }
 
 .Star:disabled {
