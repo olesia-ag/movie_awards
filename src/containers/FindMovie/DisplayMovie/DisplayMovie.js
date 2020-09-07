@@ -7,8 +7,8 @@ const DisplayMovie = props => {
 	const { title, released, id, nominated } = props;
 	const moviesContext = useContext(NominatedMoviesContext);
 
+
 	const nominateMovie = event => {
-    console.log('went to nominate movie')
 		event.preventDefault();
 		const movie = {
 			id: id,
@@ -17,11 +17,12 @@ const DisplayMovie = props => {
 		};
 		moviesContext.addMovie(movie);
 	};
+
 	return (
 		<div>
 			<p>{title}</p>
 			<p>{released}</p>
-			<Star clicked={event => nominateMovie(event)} btnType='Add' />
+			<Button btnType='Success' clicked={event => nominateMovie(event)} disabled={nominated}>NOMINATE</Button>
 		</div>
 	);
 };

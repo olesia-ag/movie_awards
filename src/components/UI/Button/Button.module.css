@@ -11,14 +11,14 @@
 }
 
 .Success {
-	color: var(--lightBlue);
+	color: var(--brightPink);
 }
 .Danger {
-	color: var(--lightYellow);
+	color: var(--mainPurple);
 }
 
 .Button:disabled {
-	color: var(--lightPink);
+	color: var(--greyColor);
 	cursor: not-allowed;
 }
 

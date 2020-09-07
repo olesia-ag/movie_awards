@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axiosInstance from '../../axios-movies';
@@ -15,12 +15,14 @@ const FindMovie = (props) => {
 	};
 	const [movieToFind, setMovieToFind] = useState(movieData);
 	const [foundMovie, setFoundMovie] = useState({});
-	const [sending, setSending] = useState(false);
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const moviesContext = useContext(NominatedMoviesContext);
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		setSending(true);
+		setLoading(true);
+		setError(false);
 	};
 
 	const inputChangedHandler = (event) => {
@@ -29,27 +31,54 @@ const FindMovie = (props) => {
 		updatedMovie.title = event.target.value;
 		setMovieToFind(updatedMovie);
 	};
-	//DO ERROR BEHAVIOR!!!
+
+	useEffect(() => {
+		if (moviesContext.findMovieHandler(foundMovie.id)) {
+			const updatedMovie = { ...foundMovie };
+			updatedMovie.nominated = true;
+			setFoundMovie(updatedMovie);
+		}
+	}, [foundMovie.id]);
+
 	const fetchMovie = () => {
+		setLoading(true);
 		axiosInstance
 			.get(
-				`?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type="movie"&t="${movieToFind.title}"&`
+				`?apikey=${process.env.REACT_APP_OMDB_API_KEY}&type="movie"&t="${movieToFind.title}"&`,
+				{ timeout: 6000 }
 			)
-			.then((res) =>
-				foundMovieSuccess(res.data.imdbID, res.data.Title, res.data.Released)
-			)
-			.catch((error) => console.log(error));
+			.then((res) => {
+				if (res.data.Response === 'False') throw Error(res.data.Error);
+				setFoundMovie({
+					id: res.data.imdbID,
+					title: res.data.Title,
+					released: res.data.Released,
+				});
+				setLoading(false);
+			})
+			.catch((error) => {
+				setError(error);
+				setLoading(false);
+			});
 	};
 
-	const foundMovieSuccess = (id, title, released) => {
-		console.log(id, title, released);
-		const foundMovie = {
-			id: id,
-			title: title,
-			released: released,
-		};
-		setFoundMovie(foundMovie);
-	};
+	let displayMovie = null;
+	console.log(error);
+	if (loading) {
+		displayMovie = <p>Searching for {movieToFind.title}</p>;
+	} else if (error) {
+		displayMovie = error.message;
+	} else if(foundMovie.id) {
+		displayMovie = (
+			<DisplayMovie
+				title={foundMovie.title}
+				id={foundMovie.id}
+				released={foundMovie.released}
+				nominated={foundMovie.nominated}
+			/>
+		);
+	}
+console.log(foundMovie)
 	return (
 		<div className={classes.Container}>
 			<form onSubmit={submitHandler}>
@@ -57,17 +86,11 @@ const FindMovie = (props) => {
 				<div className={classes.InputContainer}>
 					<Input changed={(event) => inputChangedHandler(event)}></Input>
 				</div>
-				<p>Searching for {movieToFind.title}</p>
 				<Button btnType='Success' clicked={() => fetchMovie()}>
-					Submit
+					SUBMIT
 				</Button>
 			</form>
-			<DisplayMovie
-				title={foundMovie.title}
-				id={foundMovie.id}
-				released={foundMovie.released}
-				nominated={foundMovie.nominated}
-			/>
+			{displayMovie}
 		</div>
 	);
 };

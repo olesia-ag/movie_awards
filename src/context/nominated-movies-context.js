@@ -45,6 +45,7 @@ const NominatedMoviesProvider = (props) => {
 				removeMovies: removeMoviesHandler,
 				findMovie: findMovieHandler,
 				getMoviesFromStorage: getMoviesFromStorage,
+				findMovieHandler: findMovieHandler,
 				movies: movies,
 			}}>
 			{props.children}

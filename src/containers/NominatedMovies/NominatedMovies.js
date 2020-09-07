@@ -36,7 +36,6 @@ const NominatedMovies = (props) => {
 	}
 
 	let displayMovies;
-	console.log(moviesContext);
 	if (moviesContext.movies.length === 0) {
 		displayMovies = <p>Nominate Some Movies First!</p>;
 	} else {
@@ -61,13 +60,12 @@ const NominatedMovies = (props) => {
 		moviesForDeletion = (
 			<>
 			<p>You are about to delete {moviesToRemove.length===5?'all':moviesToRemove.length} movie{moviesToRemove.length>1?'s':null} from your favorites!</p>
-			<Button clicked={(event)=>submitDeletion(event)} disabled={moviesToRemove.length?false:true} > SUBMIT </Button>
+			<Button clicked={(event)=>submitDeletion(event)} disabled={moviesToRemove.length?false:true} btnType='Danger' > SUBMIT </Button>
 			</>
 		)
 
 
 	}
-console.log('movies to remove:', moviesToRemove)
 return <div>{displayMovies}{moviesForDeletion}</div>;
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Star.module.css';
 
 const star = (props) => (
+
 	<button onClick={props.clicked} disabled={props.disabled} className={[classes.Star, classes[props.btnType]].join(' ')}>
 		<svg
 			xmlns='http://www.w3.org/2000/svg'

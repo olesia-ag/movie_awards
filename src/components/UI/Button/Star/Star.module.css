@@ -2,7 +2,6 @@
 	width: 10px;
 	height: 10px;
 	border: none;
-	/* stroke: black; */
 	border: none;
 	background-color: transparent;
 	outline: none;
@@ -19,7 +18,7 @@
 }
 
 .Star.Added svg path{
-	fill: yellow;
+	fill: var(--brightYellow);
 }
 
 /* .Star.Added svg path:hover{
