@@ -35,7 +35,7 @@ const NominatedMoviesProvider = (props) => {
 
 	const getMoviesFromStorage = () => {
 		const moviesArr = JSON.parse(localStorage.getItem('Movies'));
-		if (moviesArr.length !== 0) {
+		if (moviesArr.length) {
 			setMovies(moviesArr);
 		}
 	};
