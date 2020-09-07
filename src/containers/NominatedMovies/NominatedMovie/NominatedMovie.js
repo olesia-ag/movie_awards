@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Star from '../../../components/UI/Button/Star/Star';
 import classes from './NominatedMovie.module.css';
 

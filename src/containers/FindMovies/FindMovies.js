@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axiosInstance from '../../axios-movies';
@@ -17,8 +17,7 @@ const FindMovie = (props) => {
 	const [foundMovies, setFoundMovies] = useState([]);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [reachedNominatedMax, setReachedNominatedMax] = useState(false);
-	const moviesContext = useContext(NominatedMoviesContext);
+	const { reachedMax } = useContext(NominatedMoviesContext);
 
 	const submitHandler = (event) => {
 		event.preventDefault();
@@ -33,13 +32,13 @@ const FindMovie = (props) => {
 		setMovieToFind(updatedMovie);
 	};
 
-	useEffect(() => {
-		if (moviesContext.findMovieHandler(foundMovies.id)) {
-			const updatedMovie = { ...foundMovies };
-			updatedMovie.nominated = true;
-			setFoundMovies(updatedMovie);
-		}
-	}, [foundMovies.id]);
+	// useEffect(() => {
+	// 	if (findMovieHandler(foundMovies.id)) {
+	// 		const updatedMovie = { ...foundMovies };
+	// 		updatedMovie.nominated = true;
+	// 		setFoundMovies(updatedMovie);
+	// 	}
+	// }, [foundMovies.id]);
 
 	const fetchMovie = () => {
 		setLoading(true);
@@ -58,10 +57,10 @@ const FindMovie = (props) => {
 				setLoading(false);
 			});
 	};
-let showWarning = null
-if(moviesContext.reachedMax){
-	showWarning = <h5>You've reached the maximum of 5 nominated movies!</h5>
-}
+	let showWarning = null;
+	if (reachedMax) {
+		showWarning = <h5>You've reached the maximum of 5 nominated movies!</h5>;
+	}
 	return (
 		<div className={classes.FindMovies}>
 			<form onSubmit={submitHandler} className={classes.FormContainer}>
@@ -76,7 +75,7 @@ if(moviesContext.reachedMax){
 					disabled={movieToFind.title.length === 0}>
 					SUBMIT
 				</Button>
-			{showWarning}
+				{showWarning}
 			</form>
 			<DisplayMovies
 				movies={foundMovies}

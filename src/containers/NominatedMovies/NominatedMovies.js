@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { NominatedMoviesContext } from '../../context/nominated-movies-context';
 import NominatedMovie from './NominatedMovie/NominatedMovie';
 import Button from '../../components/UI/Button/Button';
@@ -18,11 +18,9 @@ const NominatedMovies = (props) => {
 
 	const unmarkForDeletion = (event, id) => {
 		event.preventDefault();
-		const updatedMoviesToRemove = moviesToRemove.filter((movieId) => {
-			if (movieId !== id) {
-				return movieId;
-			}
-		});
+		const updatedMoviesToRemove = moviesToRemove.filter(
+			(movieId) => movieId !== id
+		);
 		setMoviesToRemove(updatedMoviesToRemove);
 	};
 
@@ -38,23 +36,25 @@ const NominatedMovies = (props) => {
 	} else {
 		displayMovies = (
 			<>
-			<h5>Nominated movies:</h5>
-			<ol>
-				{moviesContext.movies.map((movie) => {
-					return (
-						<li key={movie.id}>
-							<NominatedMovie
-								movieId={movie.id}
-								title={movie.title}
-								released={movie.released}
-								delete={moviesContext.removeMovie}
-								markForDeletion={(event, id) => markForDeletion(event, id)}
-								unmarkForDeletion={(event, id) => unmarkForDeletion(event, id)}
-							/>
-						</li>
-					);
-				})}
-			</ol>
+				<h5>Nominated movies:</h5>
+				<ol>
+					{moviesContext.movies.map((movie) => {
+						return (
+							<li key={movie.id}>
+								<NominatedMovie
+									movieId={movie.id}
+									title={movie.title}
+									released={movie.released}
+									delete={moviesContext.removeMovie}
+									markForDeletion={(event, id) => markForDeletion(event, id)}
+									unmarkForDeletion={(event, id) =>
+										unmarkForDeletion(event, id)
+									}
+								/>
+							</li>
+						);
+					})}
+				</ol>
 			</>
 		);
 	}
@@ -72,7 +72,7 @@ const NominatedMovies = (props) => {
 					clicked={(event) => submitDeletion(event)}
 					disabled={moviesToRemove.length ? false : true}
 					btnType='Danger'>
-				CONFIRM
+					CONFIRM
 				</Button>
 			</div>
 		);

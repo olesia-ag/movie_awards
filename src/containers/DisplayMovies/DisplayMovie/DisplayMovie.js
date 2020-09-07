@@ -5,16 +5,16 @@ import classes from './DisplayMovie.module.css';
 
 const DisplayMovie = (props) => {
 	const { title, released, id } = props;
-	const moviesContext = useContext(NominatedMoviesContext);
+	const {movies, findMovieHandler, reachedMax, addMovie} = useContext(NominatedMoviesContext);
 	const [nominated, setNominated] = useState(false);
 	useEffect(() => {
-		if (moviesContext.findMovieHandler(id)) {
+		if (findMovieHandler(id)) {
 			setNominated(true);
 		}
 		else{
 			setNominated(false)
 		}
-	}, [...Object.values(moviesContext), id]);
+	}, [movies, id, findMovieHandler]);
 
 	const nominateMovie = (event) => {
 		event.preventDefault();
@@ -23,7 +23,7 @@ const DisplayMovie = (props) => {
 			released: released,
 			title: title,
 		};
-		moviesContext.addMovie(movie);
+		addMovie(movie);
 		setNominated(true)
 	};
 
@@ -35,7 +35,7 @@ const DisplayMovie = (props) => {
 			<Button
 				btnType='Success'
 				clicked={(event) => nominateMovie(event)}
-				disabled={nominated||moviesContext.reachedMax}
+				disabled={nominated||reachedMax}
 				key={id}>
 				NOMINATE
 			</Button>

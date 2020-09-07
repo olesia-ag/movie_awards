@@ -7,7 +7,6 @@ export const NominatedMoviesContext = React.createContext({
 	removeMovie: () => {},
 	findMovie: () => {},
 	getMoviesFromStorage: () => {},
-	reachedMax: () => {},
 	findMovieHandler: () => {},
 });
 
