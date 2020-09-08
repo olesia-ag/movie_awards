@@ -64,7 +64,7 @@ const NominatedMovies = (props) => {
 			<div className={classes.DeletionWarning}>
 				<h5>
 					You are about to delete{' '}
-					{moviesToRemove.length === 5 ? 'all' : moviesToRemove.length} movie
+					{moviesToRemove.length} movie
 					{moviesToRemove.length > 1 ? 's' : null} from your nominated list!
 				</h5>
 				<Button
