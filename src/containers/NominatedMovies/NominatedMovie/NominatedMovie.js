@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Star from '../../../components/UI/Button/Star/Star';
+import Sign from '../../../components/UI/Button/Sign/Sign';
 import classes from './NominatedMovie.module.css';
 
 const NominatedMovie = ({
@@ -26,10 +26,10 @@ const NominatedMovie = ({
 	};
 
 	return (
-		<div className={nominatedMovieClasses.join(' ')}>
+		<div className={nominatedMovieClasses.join(' ')} onClick={toDelete ? unchooseToDelete : chooseToDelete}>
 			{title} ({released})
-				<Star
-					btnType={!toDelete ? 'Added' : 'Add'}
+				<Sign
+					signType={!toDelete ? 'Minus' : 'Plus'}
 					clicked={toDelete ? unchooseToDelete : chooseToDelete}
 				/>
 		</div>

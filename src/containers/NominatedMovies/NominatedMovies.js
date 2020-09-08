@@ -36,7 +36,6 @@ const NominatedMovies = (props) => {
 	} else {
 		displayMovies = (
 			<>
-
 				<ol>
 					{moviesContext.movies.map((movie) => {
 						return (
@@ -59,7 +58,7 @@ const NominatedMovies = (props) => {
 		);
 	}
 
-	let moviesForDeletion = <h5>Nominated movies:</h5>
+	let moviesForDeletion = null;
 	if (moviesToRemove.length) {
 		moviesForDeletion = (
 			<div className={classes.DeletionWarning}>
@@ -79,8 +78,9 @@ const NominatedMovies = (props) => {
 	}
 	return (
 		<div className={classes.NominatedMoviesContainer}>
-			<div>{moviesForDeletion}</div>
+			<h5>Nominated movies:</h5>
 			<div className={classes.NominatedMovies}>{displayMovies}</div>
+			<div>{moviesForDeletion}</div>
 		</div>
 	);
 };

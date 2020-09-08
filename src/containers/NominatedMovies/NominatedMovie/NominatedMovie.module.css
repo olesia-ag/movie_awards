@@ -11,3 +11,7 @@
 .NominatedMovie{
   margin: 0.8rem;
 }
+
+.NominatedMovie:hover{
+  cursor: pointer;
+}
