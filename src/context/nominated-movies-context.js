@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 export const NominatedMoviesContext = React.createContext({
 	movies: [],
 	addMovie: () => {},
@@ -11,6 +11,8 @@ export const NominatedMoviesContext = React.createContext({
 
 const NominatedMoviesProvider = (props) => {
 	const [movies, setMovies] = useState([]);
+
+	useEffect(()=> getMoviesFromStorage(), [])
 
 	const checkLimit = () => {
 		if (movies.length === 5) {

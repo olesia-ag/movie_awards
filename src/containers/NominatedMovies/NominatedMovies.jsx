@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { NominatedMoviesContext } from '../../context/nominated-movies-context';
 
 import classes from './NominatedMovies.module.css';
@@ -6,14 +6,9 @@ import SingleMovie from '../../components/SingleMovie/SingleMovie';
 import LimitWarning from '../../components/LimitWarning/LimitWarning';
 
 const NominatedMovies = (props) => {
-	const {
-		removeMovie,
-		getMoviesFromStorage,
-		checkLimit,
-		movies,
-	} = useContext(NominatedMoviesContext);
-
-	useEffect(() => getMoviesFromStorage(), [getMoviesFromStorage]);
+	const { removeMovie, checkLimit, movies } = useContext(
+		NominatedMoviesContext
+	);
 	let displayMovies;
 	if (movies.length === 0) {
 		displayMovies = <p>nominate some movies first!</p>;
