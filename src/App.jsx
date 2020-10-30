@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
 import { Switch, Redirect} from 'react-router-dom';
-import Layout from './hoc/Layout';
+import Main from './containers/Main/Main';
 
 function App() {
 	return (
-		<div className='App'>
+		<div>
 			<Switch>
 				<Redirect to='/' />
 			</Switch>
-			<Layout />
+			<Main />
 		</div>
 	);
 }
