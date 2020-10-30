@@ -9,13 +9,11 @@ const NominatedMovies = (props) => {
 	const {
 		removeMovie,
 		getMoviesFromStorage,
-		findMovie,
 		checkLimit,
-		checkIfNominated,
 		movies,
 	} = useContext(NominatedMoviesContext);
 
-	useEffect(() => getMoviesFromStorage(), []);
+	useEffect(() => getMoviesFromStorage(), [getMoviesFromStorage]);
 	let displayMovies;
 	if (movies.length === 0) {
 		displayMovies = <p>nominate some movies first!</p>;

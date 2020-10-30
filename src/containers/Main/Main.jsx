@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import NominatedMovies from '../NominatedMovies/NominatedMovies';
 import FindMovies from '../FindMovies/FindMovies';
 import classes from './Main.module.css';
 import DisplayMovies from '../../components/DisplayMovies/DisplayMovies';
-import NominatedMoviesContext from '../../context/nominated-movies-context';
 import axios from 'axios';
 
 const Main = (props) => {
