@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 export const NominatedMoviesContext = React.createContext({
 	movies: [],
-	reachedMax: false,
 	addMovie: () => {},
 	removeMovie: () => {},
-	findMovie: () => {},
+	checkIfNominated: () => {},
 	getMoviesFromStorage: () => {},
 	findMovieHandler: () => {},
+	checkLimit: () => {},
 });
 
 const NominatedMoviesProvider = (props) => {
 	const [movies, setMovies] = useState([]);
-	const [reachedMax, setReachedMax] = useState(null);
-	useEffect(() => {
-		if (movies.length === 5) {
-			setReachedMax(true);
-		} else {
-			setReachedMax(false);
-		}
-	}, [movies.length]);
-	useEffect(() => getMoviesFromStorage(), []);
 
+	const checkLimit = () => {
+		if (movies.length === 5) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+	//nominate movie
 	const addMovieHandler = (movie) => {
 		if (movies.length > 4) {
 			return 'Error. Should not get here';
@@ -32,32 +30,33 @@ const NominatedMoviesProvider = (props) => {
 			localStorage.setItem('Movies', JSON.stringify(updatedMovies));
 		}
 	};
-
+	//get nominated movies from localStorage
 	const getMoviesFromStorage = () => {
 		const moviesArr = JSON.parse(localStorage.getItem('Movies'));
 		if (moviesArr) {
 			setMovies(moviesArr);
 		}
 	};
-	const removeMoviesHandler = (arrToRemove) => {
-		const updatedMovies = movies.filter((el) => !arrToRemove.includes(el.id));
+
+	const removeMovieHandler = (movieId) => {
+		const updatedMovies = movies.filter((movie) => movie.imdbID !== movieId);
 		localStorage.setItem('Movies', JSON.stringify(updatedMovies));
 		setMovies(updatedMovies);
 	};
-	//will check if the movie with id already exists in the array
+
+	//will check if the movie already nominated
 	const findMovieHandler = (id) => {
-		return movies.some((movie) => movie.id === id);
+		return movies.some((movie) => movie.imdbID === id);
 	};
 	return (
 		<NominatedMoviesContext.Provider
 			value={{
 				addMovie: addMovieHandler,
-				removeMovies: removeMoviesHandler,
-				findMovie: findMovieHandler,
+				removeMovie: removeMovieHandler,
+				checkIfNominated: findMovieHandler,
 				getMoviesFromStorage: getMoviesFromStorage,
-				findMovieHandler: findMovieHandler,
-				reachedMax: reachedMax,
-				movies: movies,
+				checkLimit,
+				movies,
 			}}>
 			{props.children}
 		</NominatedMoviesContext.Provider>

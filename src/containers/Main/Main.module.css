@@ -1,0 +1,25 @@
+.LayoutContainer {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+}
+
+.FindContainer {
+  width: 100vw;
+  margin: 1rem;
+}
+
+.MoviesContainer {
+	display: flex;
+  flex-direction: row;
+  margin: 2rem;
+}
+
+.NominatedMovies {
+	flex: 2;
+}
+
+.DisplayMovies {
+	flex: 3;
+}

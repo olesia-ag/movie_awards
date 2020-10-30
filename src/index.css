@@ -7,7 +7,6 @@
 	--lightPink: #efa0ca;
 	--greyColor: #ccc;
 	--lightGrey: #d3d3d3;
-	background-color: white;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 62.5%;
 }
@@ -15,4 +14,8 @@
 * {
 	box-sizing: border-box;
 	font-size: medium;
+}
+
+h5 {
+	color: var(--mainPurple);
 }

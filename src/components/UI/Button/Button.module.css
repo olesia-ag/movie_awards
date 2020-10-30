@@ -5,20 +5,16 @@
 	font-weight: bold;
 	border: 0.2rem;
 	font: inherit;
+	color: var(--brightPink);
 	padding: 0.3rem 10%;
 	margin: 0.2rem;
 	border-radius: 0.5rem;
 }
 
-.Success {
-	color: var(--brightPink);
-}
-.Danger {
-	color: var(--mainPurple);
-}
+
 
 .Button:disabled {
-	color: var(--greyColor);
+	color: var(--lightPink);
 	cursor: not-allowed;
 }
 
