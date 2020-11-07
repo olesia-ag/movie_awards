@@ -41,6 +41,19 @@ const Main = (props) => {
 				setError(error);
 			});
 	};
+
+	let showMovies = null;
+
+	if (loading) showMovies = <p>searching...</p>;
+	else if (error) showMovies = <p>{error.message}</p>;
+	else if (foundMovies.length) {
+		showMovies = (
+			<div className={classes.DisplayMovies}>
+				<DisplayMovies movies={foundMovies} movieToFind={movieToFind} />
+			</div>
+		);
+	}
+
 	return (
 		<div className={classes.LayoutContainer}>
 			<div className={classes.FindContainer}>
@@ -57,9 +70,7 @@ const Main = (props) => {
 				<div className={classes.NominatedMovies}>
 					<NominatedMovies />
 				</div>
-				<div className={classes.DisplayMovies}>
-					<DisplayMovies movies={foundMovies} loading={loading} error={error} movieToFind={movieToFind}/>
-				</div>
+				{showMovies}
 			</div>
 		</div>
 	);

@@ -21,6 +21,7 @@ const NominatedMoviesProvider = (props) => {
 			return false;
 		}
 	};
+
 	//nominate movie
 	const addMovieHandler = (movie) => {
 		if (movies.length > 4) {
@@ -32,6 +33,7 @@ const NominatedMoviesProvider = (props) => {
 			localStorage.setItem('Movies', JSON.stringify(updatedMovies));
 		}
 	};
+
 	//get nominated movies from localStorage
 	const getMoviesFromStorage = () => {
 		const moviesArr = JSON.parse(localStorage.getItem('Movies'));
