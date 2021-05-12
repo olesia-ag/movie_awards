@@ -65,7 +65,6 @@ const Main = (props) => {
 					movieToFind
 				/>
 			</div>
-
 			<div className={classes.MoviesContainer}>
 				<div className={classes.NominatedMovies}>
 					<NominatedMovies />
